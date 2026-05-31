@@ -50,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyRotation(float negativeInput)
     {
+        rigidBody.freezeRotation = true;
         transform.Rotate(Vector3.forward * negativeInput * Time.fixedDeltaTime);
+        rigidBody.freezeRotation = false;
     }
 }
