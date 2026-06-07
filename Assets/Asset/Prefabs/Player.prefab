@@ -149,6 +149,7 @@ MonoBehaviour:
     m_Flags: 0
   thrustStrength: 1000
   rotationStrength: 100
+  mainEngineSound: {fileID: 8300000, guid: aa4a0c7d4d7ab5544b22c0a49004d259, type: 3}
 --- !u!114 &6921358175025337002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b959457656225c34aaed2addb73e7bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collision
+  finishSound: {fileID: 8300000, guid: 87e609b01061afe429f5f906b5bf77e4, type: 3}
+  crashSound: {fileID: 8300000, guid: 88a99e7ead737464f8dc5fbbe654a30d, type: 3}
 --- !u!82 &6042500361523691616
 AudioSource:
   m_ObjectHideFlags: 0

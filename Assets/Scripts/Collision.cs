@@ -3,8 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class Collision : MonoBehaviour
 {
+    [SerializeField] AudioClip finishSound;
+    [SerializeField] AudioClip crashSound;
+    AudioSource audioSource;
+    bool isControllable = true;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void OnCollisionEnter(UnityEngine.Collision collision)
     {
+        if(!isControllable) return;
         switch (collision.gameObject.tag)
         {
             case "Launch":
@@ -21,12 +32,18 @@ public class Collision : MonoBehaviour
 
     private void NextLevel()
     {
+        isControllable = false;
+        audioSource.Stop();
+        audioSource.PlayOneShot(finishSound);
         GetComponent<PlayerMovement>().enabled = false;
         Invoke("LoadNextScene", 2f);
     }
 
     private void CrashSequence()
     {
+        isControllable = false;
+        audioSource.Stop();
+        audioSource.PlayOneShot(crashSound);
         GetComponent<PlayerMovement>().enabled = false;
         Invoke("ReloadScene", 2f);
     }
