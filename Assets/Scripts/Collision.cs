@@ -5,6 +5,8 @@ public class Collision : MonoBehaviour
 {
     [SerializeField] AudioClip finishSound;
     [SerializeField] AudioClip crashSound;
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem explosionParticles;
     AudioSource audioSource;
     bool isControllable = true;
 
@@ -35,6 +37,7 @@ public class Collision : MonoBehaviour
         isControllable = false;
         audioSource.Stop();
         audioSource.PlayOneShot(finishSound);
+        successParticles.Play();
         GetComponent<PlayerMovement>().enabled = false;
         Invoke("LoadNextScene", 2f);
     }
@@ -44,6 +47,7 @@ public class Collision : MonoBehaviour
         isControllable = false;
         audioSource.Stop();
         audioSource.PlayOneShot(crashSound);
+        explosionParticles.Play();
         GetComponent<PlayerMovement>().enabled = false;
         Invoke("ReloadScene", 2f);
     }
