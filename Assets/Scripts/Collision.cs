@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class Collision : MonoBehaviour
@@ -9,15 +10,32 @@ public class Collision : MonoBehaviour
     [SerializeField] ParticleSystem explosionParticles;
     AudioSource audioSource;
     bool isControllable = true;
+    bool isCollided = true;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
+    void Update()
+    {
+        RespondToDebugKeys();
+    }
+
+    void RespondToDebugKeys()
+    {
+        if (Keyboard.current.lKey.wasPressedThisFrame)
+        {
+            LoadNextScene();
+        }else if (Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            isCollided = !isCollided;
+        }
+    }
+
     void OnCollisionEnter(UnityEngine.Collision collision)
     {
-        if(!isControllable) return;
+        if(!isControllable || !isCollided) return;
         switch (collision.gameObject.tag)
         {
             case "Launch":
